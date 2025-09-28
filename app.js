@@ -15,6 +15,8 @@ const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
+const PORT = process.env.PORT || 8080;
+
 
 const listingRouter = require("./routes/listing.js");
 const reviewRouter= require("./routes/review.js");
@@ -65,6 +67,11 @@ const sessionOptions = {
     },
 };
 
+app.get('/', (req, res) => {
+  res.send('Welcome to Wanderlust!');
+});
+
+
 
 app.use(session(sessionOptions));
 app.use(flash());
@@ -99,6 +106,6 @@ app.use((err, req, res, next) => {
 
 
 
-app.listen(8080, () => {
+app.listen(PORT, () => {
     console.log("Server is listening on port 8080");
 });

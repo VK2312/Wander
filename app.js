@@ -17,6 +17,7 @@ const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
 const PORT = process.env.PORT || 8080;
 const listingController = require("./controllers/listing.js");
+const wrapAsync = require("./utils/wrapAsync.js");
 
 
 const listingRouter = require("./routes/listing.js");

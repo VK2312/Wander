@@ -16,7 +16,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
 const PORT = process.env.PORT || 8080;
-const listingController = require("../controllers/listing.js");
+const listingController = require("./controllers/listing.js");
 
 
 const listingRouter = require("./routes/listing.js");
@@ -51,7 +51,7 @@ const store = MongoStore.create({
     touchAfter: 24 * 3600,
 });
 
-store.on("error", ()=> {
+store.on("error", (err)=> {
     console.log("ERROR in MONGO SESSION STORE", err);
 })
 
@@ -69,7 +69,6 @@ const sessionOptions = {
 };
 
 app.get('/', wrapAsync(listingController.index));
-
 
 
 app.use(session(sessionOptions));
